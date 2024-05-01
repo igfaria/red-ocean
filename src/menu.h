@@ -1,14 +1,6 @@
 #ifndef MENU_H
 #define MENU_H
 
-//Main Libraries
-#include "M5Cardputer.h"
-#include <string>
-
-//Code Abbreviations
-using namespace std;
-#define lcd M5.Lcd
-
 //Rect definitions
 #define rectColor 0xF000
 #define rectX 0
