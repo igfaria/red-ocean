@@ -10,6 +10,7 @@ using namespace std;
 
 //Project Libraries
 #include "redOceanIcon.h" //Project logo librarie
+#include "menuOptions.h"
 #include "menu.h"
 
 //Screen definitions
@@ -34,12 +35,6 @@ using namespace std;
 #define cursorX 0
 #define cursorY 20
 
-// Main and sub menus
-string menuOptions [] = {"[*] IR", 
-                         "[*] Wifi", 
-                         "[*] Keyboard"};
-
-
 void setup() {
     //Screen settings
     M5.begin();
@@ -49,13 +44,9 @@ void setup() {
     lcd.setTextColor(fontColor);
     lcd.fillScreen(screenColor);
 
-    //Project logo settings
-    lcd.setSwapBytes(true);
-    lcd.setBrightness(60);
-    lcd.pushImage(iconX, iconY, iconWidth, iconHeight, redOceanIcon);
-    delay(5*1000);
+    redOceanIcon(); //Project logo function
 
-    drawMenu(menuOptions, sizeof(menuOptions)/sizeof(menuOptions[0]));
+    drawMenu(mainOptions, sizeof(mainOptions)/sizeof(mainOptions[0]));
 }
 
 
