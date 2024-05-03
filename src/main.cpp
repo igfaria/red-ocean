@@ -1,4 +1,5 @@
 
+
 //Main Libraries
 #include "M5Cardputer.h"
 #include <string>
@@ -12,6 +13,7 @@ using namespace std;
 #include "redOceanIcon.h" //Project logo librarie
 #include "menuOptions.h"
 #include "menu.h"
+#include "menuControls.h"
 
 //Screen definitions
 #define screenColor 0x0000
@@ -30,6 +32,7 @@ using namespace std;
 #define rectX 0
 #define rectY 13 //Somar de 40 em 40
 #define rectHeight 30
+int rectSum = rectY;
 
 //Cursor definitions
 #define cursorX 0
@@ -37,7 +40,8 @@ using namespace std;
 
 void setup() {
     //Screen settings
-    M5.begin();
+    auto cfg = M5.config();
+    M5Cardputer.begin(cfg, true);
     M5.Power.begin();
     lcd.setRotation(screenRotation);
     lcd.setTextSize(fontMedium);
@@ -46,10 +50,24 @@ void setup() {
 
     redOceanIcon(); //Project logo function
 
-    drawMenu(mainOptions, sizeof(mainOptions)/sizeof(mainOptions[0]));
+    drawMenu(mainOptions, sizeof(mainOptions)/sizeof(mainOptions[0]), rectY);
 }
 
 
 void loop() {
+
+    M5Cardputer.update();
+    if (M5Cardputer.Keyboard.isChange())
+    {
+        if (M5Cardputer.Keyboard.isKeyPressed('.'))           
+            rectSum = arrowDown(mainOptions, sizeof(mainOptions)/sizeof(mainOptions[0]), rectSum);
+
+        if (M5Cardputer.Keyboard.isKeyPressed(';'))
+            rectSum = arrowUp(mainOptions, sizeof(mainOptions)/sizeof(mainOptions[0]), rectSum);
+            
+        if (M5Cardputer.Keyboard.isKeyPressed(KEY_ENTER))
+            drawMenu(mainOptions, sizeof(mainOptions)/sizeof(mainOptions[0]), rectY);
+    }
+
 
 }
