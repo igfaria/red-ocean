@@ -2039,6 +2039,6 @@ void redOceanIcon(){
 	lcd.setSwapBytes(true);
     lcd.setBrightness(60);
     lcd.pushImage(iconX, iconY, iconWidth, iconHeight, Icon);
-    //delay(5*1000);
+    delay(2*1000);
 }
 #endif /*REDOCEANICON_H*/
