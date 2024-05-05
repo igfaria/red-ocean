@@ -4,35 +4,43 @@
 //Rect definitions
 #define rectY 13
 
-int arrowDown(string *options, int size, int rectSum)
+int arrowUp(int rectSum, int size, int  optionPosition)
 {
-    if (rectSum < rectY + 80)
-    {
-        rectSum += 40;
-        M5Cardputer.Display.clear();
-        drawMenu(options, size, rectSum);
-    } else
-    {
-        rectSum = rectY;
-        drawMenu(options, size, rectY);
+    if(optionPosition == 1){
+        optionPosition = size+1;
+    }
+    if(optionPosition > 1){
+         optionPosition--;
     }
 
-    return rectSum;
+    return optionPosition;
 }
 
-int arrowUp(string *options, int size, int rectSum)
+int arrowDown(int rectSum, int size, int  optionPosition)
 {
-    if (rectSum > rectY)
-    {
-        rectSum -= 40;
-        M5Cardputer.Display.clear();
-        drawMenu(mainOptions, size, rectSum);
-    } 
-    else
-    {
-        rectSum = rectY + 80;
-        drawMenu(mainOptions, size, rectSum);
+    if(optionPosition == size){
+        optionPosition = 1;
     }
+    else if(optionPosition < size){
+         optionPosition++;
+    }
+
+    return optionPosition;
+}
+
+int rectPosition(int rectSum, int size, string *options, int  optionPosition){
+        if(optionPosition%3 == 2){
+            rectSum = rectY+40;
+            drawMenu(options, size, rectSum, optionPosition-1);
+        }
+        if(optionPosition%3 == 1){
+            rectSum = rectY;
+            drawMenu(options, size, rectSum, optionPosition);
+        }
+        if(optionPosition%3 == 0){
+            rectSum = rectY+80;
+            drawMenu(options, size, rectSum, optionPosition-2);
+        }
     return rectSum;
 }
 
