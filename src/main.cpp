@@ -20,6 +20,8 @@ using namespace std;
 #define screenRotation 1
 #define screenWidth 240
 #define screenHeight 135
+int scrollScreenDown = 0;
+int scrollScreenUp = 0;
 
 //Font definitions
 #define fontColor 0xFFFF
@@ -33,6 +35,7 @@ using namespace std;
 #define rectY 13 //Somar de 40 em 40
 #define rectHeight 30
 int rectSum = rectY;
+int optionPosition = 1;
 
 //Cursor definitions
 #define cursorX 0
@@ -43,6 +46,7 @@ void setup() {
     auto cfg = M5.config();
     M5Cardputer.begin(cfg, true);
     M5.Power.begin();
+    lcd.setBrightness(50);
     lcd.setRotation(screenRotation);
     lcd.setTextSize(fontMedium);
     lcd.setTextColor(fontColor);
@@ -50,24 +54,26 @@ void setup() {
 
     redOceanIcon(); //Project logo function
 
-    drawMenu(mainOptions, sizeof(mainOptions)/sizeof(mainOptions[0]), rectY);
+    //drawMenu(mainOptions, sizeof(mainOptions)/sizeof(mainOptions[0]), rectY, optionPosition);
+    rectPosition(rectSum, sizeof(mainOptions)/sizeof(mainOptions[0]), mainOptions, optionPosition);
 }
-
 
 void loop() {
 
     M5Cardputer.update();
-    if (M5Cardputer.Keyboard.isChange())
-    {
-        if (M5Cardputer.Keyboard.isKeyPressed('.'))           
-            rectSum = arrowDown(mainOptions, sizeof(mainOptions)/sizeof(mainOptions[0]), rectSum);
+    if (M5Cardputer.Keyboard.isChange()){
+        if (M5Cardputer.Keyboard.isKeyPressed('.')){  
+            optionPosition = arrowDown(rectSum, sizeof(mainOptions)/sizeof(mainOptions[0]), optionPosition);
+            rectSum = rectPosition(rectSum, sizeof(mainOptions)/sizeof(mainOptions[0]), mainOptions, optionPosition);
+        }
 
-        if (M5Cardputer.Keyboard.isKeyPressed(';'))
-            rectSum = arrowUp(mainOptions, sizeof(mainOptions)/sizeof(mainOptions[0]), rectSum);
+        if (M5Cardputer.Keyboard.isKeyPressed(';')){
+            optionPosition = arrowUp(rectSum, sizeof(mainOptions)/sizeof(mainOptions[0]), optionPosition);
+            rectSum = rectPosition(rectSum, sizeof(mainOptions)/sizeof(mainOptions[0]), mainOptions, optionPosition);
+        }
             
-        if (M5Cardputer.Keyboard.isKeyPressed(KEY_ENTER))
-            drawMenu(mainOptions, sizeof(mainOptions)/sizeof(mainOptions[0]), rectY);
+        if (M5Cardputer.Keyboard.isKeyPressed(KEY_ENTER)){
+            drawMenu(mainOptions, sizeof(mainOptions)/sizeof(mainOptions[0]), rectY, 1);
+        }
     }
-
-
 }
