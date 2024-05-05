@@ -15,12 +15,12 @@
 #define screenColor 0x0000
 #define screenWidth 240
 
-void drawMenu(string *options, int size, int rectY)
-{
+void drawMenu(string *options, int size, int rectY, int optionPosition){
     lcd.setCursor(cursorX, cursorY);
     lcd.fillScreen(screenColor);
     lcd.fillRect(rectX, rectY, screenWidth, rectHeight, rectColor);
-    for(int i = 0; i < size; i++)
+    for(int i = optionPosition-1; i < size; i++)
         lcd.printf("%s\n\n", options[i].c_str());
 }
+
 #endif /*MENU_H*/
