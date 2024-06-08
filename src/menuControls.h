@@ -7,9 +7,8 @@
 int arrowUp(int rectSum, int size, int  optionPosition)
 {
     if(optionPosition == 1){
-        optionPosition = size+1;
-    }
-    if(optionPosition > 1){
+        optionPosition = size;
+    }else if(optionPosition > 1){
          optionPosition--;
     }
 
@@ -28,7 +27,7 @@ int arrowDown(int rectSum, int size, int  optionPosition)
     return optionPosition;
 }
 
-int rectPosition(int rectSum, int size, string *options, int  optionPosition){
+int rectPosition(int rectSum, int size, String *options, int  optionPosition){
         if(optionPosition%3 == 2){
             rectSum = rectY+40;
             drawMenu(options, size, rectSum, optionPosition-1);
