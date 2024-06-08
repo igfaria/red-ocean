@@ -2,13 +2,14 @@
 #define MENUOPTIONS_H
 
 // Main and sub menus
-string mainOptions [] = {"[*] IR", 
+String mainOptions [] = {"[*] IR", 
                          "[*] Wifi", 
                          "[*] Keyboard",
-                         "[*] RFID",
                          "[*] BADUSB",
-                         "[*] HACK",
-                         "[*] CYBERPUNK",
-                         "[*] SOU FODA!"};
+                         "[*] Battery",
+                         "[*] Controls"};
+
+String keyboardOptions [] = {"[*] USB",
+                             "[*] Bluetooth"};
 
 #endif /*MENUOPTIONS_H*/
