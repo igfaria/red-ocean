@@ -15,7 +15,8 @@
 #define screenColor 0x0000
 #define screenWidth 240
 
-void drawMenu(string *options, int size, int rectY, int optionPosition){
+void drawMenu(String *options, int size, int rectY, int optionPosition){
+    lcd.clear();
     lcd.setCursor(cursorX, cursorY);
     lcd.fillScreen(screenColor);
     lcd.fillRect(rectX, rectY, screenWidth, rectHeight, rectColor);
