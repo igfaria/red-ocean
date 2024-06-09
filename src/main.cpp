@@ -45,7 +45,7 @@ int optionPosition = 1;
 
 //Options size
 #define mainMenuSize sizeof(mainOptions)/sizeof(mainOptions[0])
-//#define keyboardSize sizeof(keyboardOptions)/sizeof(keyboardOptions[0])
+#define keyboardSize sizeof(keyboardOptions)/sizeof(keyboardOptions[0])
 int size = mainMenuSize;
 String *options = mainOptions;
 
@@ -90,7 +90,7 @@ void loop() {
         }
             
         if (M5Cardputer.Keyboard.isKeyPressed(KEY_ENTER) && applicationOption == 0){
-            /* Enter action
+            // Enter action
             if(optionPosition==3){
                 options = keyboardOptions;
                 size = keyboardSize;
@@ -99,7 +99,7 @@ void loop() {
                 rectSum = rectY;
                 applicationOption = 1;
                 rectSum = rectPosition(rectSum, size, options, optionPosition);
-            }*/
+            }
         }else
         if(M5Cardputer.Keyboard.isKeyPressed(KEY_ENTER) && applicationOption == 1){
             //Option Configuration
